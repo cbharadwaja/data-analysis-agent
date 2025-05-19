@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Basic resets and layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Visa Sans', sans-serif;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+  padding: 1rem;
+}
+.vds-app main {
+  /* Reset padding-top to ensure margin-top is the dominant top space,
+     avoiding accumulation with the general 'main' rule's padding-top. */
+  padding-top: 0;
+  margin-top: 1rem;
+}
