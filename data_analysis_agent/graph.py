@@ -1,3 +1,4 @@
+import logging
 from langgraph.graph import StateGraph
 
 from .state import AgentState
@@ -20,6 +21,7 @@ class DataAnalysisAgent:
         self._add_edges()
         self.graph.set_entry_point("understand_query")
         self.app = self.graph.compile()
+        self.logger = logging.getLogger(__name__)
 
     def _add_nodes(self) -> None:
         self.graph.add_node("understand_query", UnderstandQueryNode())
@@ -46,6 +48,9 @@ class DataAnalysisAgent:
         return "error_message" not in state
 
     def run(self, query: str) -> AgentState:
+        self.logger.info("Running agent")
         state: AgentState = {"original_query": query}
-        return self.app.invoke(state)
+        result = self.app.invoke(state)
+        self.logger.info("Run completed with keys: %s", list(result.keys()))
+        return result
 

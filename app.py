@@ -1,9 +1,11 @@
 import base64
+import logging
 from dotenv import load_dotenv
 
 from data_analysis_agent.graph import DataAnalysisAgent
 
 load_dotenv()
+logging.basicConfig(level=logging.INFO)
 
 
 def run(query: str):
